@@ -116,8 +116,8 @@ class Connection
   onRenderRequest: null
 
   notify: (message) ->
+    args = Array.prototype.slice.call(arguments, 1)
     if message is "complete"
-      args = Array.prototype.slice.call(arguments, 1)
       @page.evaluate("function(){ notifyComplete('#{args.join("','")}'); }")
     else
       @page.evaluate("function(){ notifyFailure('#{args.join("','")}'); }")
